@@ -1,0 +1,18 @@
+profile: ai-gateway-v1
+component: new-api
+
+northbound_protocols:
+  - openai-chat
+  - openai-responses
+  - anthropic-messages
+
+capabilities:
+  streaming: true
+  tool_calling: true
+  model_aliases: true
+  cpa_channel_health: true
+
+upstream:
+  logical_service: new-api
+  bind_scope: private
+  vault_secret_scope: kv/<env>/ai-aggregator/gateway/new-api

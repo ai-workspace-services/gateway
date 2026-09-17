@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-workspace-services.github.io/gateway/contracts/gateway.schema.json",
+  "title": "AI Gateway public contract",
+  "type": "object",
+  "required": ["schema_version", "gateway", "upstreams", "tenants", "routes"],
+  "properties": {
+    "schema_version": {"const": "v1"},
+    "gateway": {
+      "type": "object",
+      "required": ["adapter", "environment"],
+      "properties": {
+        "adapter": {"enum": ["caddy", "kong", "nginx", "apisix"]},
+        "mode": {"type": "string"},
+        "environment": {"type": "string", "minLength": 1},
+        "domains": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "runtime_config_backend": {"type": "string"},
+        "etcd": {"type": "boolean"}
+      },
+      "additionalProperties": true
+    },
+    "upstreams": {"type": "array", "minItems": 1},
+    "tenants": {"type": "array", "minItems": 1},
+    "routes": {"type": "array", "minItems": 1}
+  },
+  "additionalProperties": false
+}
