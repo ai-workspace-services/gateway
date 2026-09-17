@@ -1,0 +1,33 @@
+profile: ai-gateway-v1
+component: cpa
+
+auth_storage:
+  mode: local-encrypted
+  root: /var/lib/ai-aggregator/cpa/<instance-id>/auth
+  vault_oauth_bundle: false
+
+instances:
+  - id: cpa-codex-01
+    provider: openai
+    cli: codex
+    account_alias: cpa-codex-01
+    desktop_role: ai_desktop
+    lifecycle: persistent-or-ephemeral
+  - id: cpa-codex-02
+    provider: openai
+    cli: codex
+    account_alias: cpa-codex-02
+    desktop_role: ai_desktop
+    lifecycle: persistent-or-ephemeral
+  - id: cpa-claude-01
+    provider: anthropic
+    cli: claude-code
+    account_alias: cpa-claude-01
+    desktop_role: ai_desktop
+    lifecycle: persistent-or-ephemeral
+  - id: cpa-grok-01
+    provider: xai
+    cli: grok
+    account_alias: cpa-grok-01
+    desktop_role: ai_desktop
+    lifecycle: persistent-or-ephemeral

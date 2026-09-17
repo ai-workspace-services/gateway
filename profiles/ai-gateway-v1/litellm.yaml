@@ -1,0 +1,18 @@
+profile: ai-gateway-v1
+component: litellm
+
+providers:
+  - openai
+  - anthropic
+  - xai
+
+capabilities:
+  retry: true
+  timeout: true
+  usage: true
+  cost: true
+
+upstream:
+  logical_service: litellm
+  bind_scope: private
+  vault_secret_scope: kv/<env>/ai-aggregator/litellm/providers/*
